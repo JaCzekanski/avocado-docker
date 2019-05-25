@@ -5,9 +5,9 @@ ENV PREMAKE_VER=5.0.0-alpha13
 ENV CLANG_VER=6.0
 
 # Download compilers 
-RUN apt-get update && \
-    apt-get -y full-upgrade && \
-    apt-get install --no-install-recommends -y clang-$CLANG_VER ccache git wget ca-certificates make unzip && \
+RUN apt-get -qq update && \
+    apt-get -qq -y full-upgrade && \
+    apt-get install -qq --no-install-recommends -y clang-$CLANG_VER ccache git wget ca-certificates make unzip && \
     rm -rf /var/lib/apt/lists/* && \
     update-alternatives --install /usr/bin/cc cc /usr/bin/clang-$CLANG_VER 100 && \
     update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-$CLANG_VER 100 
