@@ -1,0 +1,14 @@
+language: minimal
+os: linux
+services:
+  - docker
+
+script: "make"
+
+before_deploy: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+deploy:
+  provider: script
+  script: make push
+  on:
+    branch: master
