@@ -12,7 +12,7 @@ RUN mkdir /build && \
     wget -nv -O premake.zip https://github.com/premake/premake-core/releases/download/v$PREMAKE_VER/premake-$PREMAKE_VER-src.zip && \
     unzip -q premake.zip && \
     cd premake-$PREMAKE_VER/build/gmake.unix && \
-    make config=release -j4 && \
+    make config=release -j4 > /dev/null && \
     cd ../../../ && \
     cp premake-$PREMAKE_VER/bin/release/premake5 /usr/bin/premake5 && \
     rm -r premake-$PREMAKE_VER && \

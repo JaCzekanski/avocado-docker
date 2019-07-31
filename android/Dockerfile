@@ -27,11 +27,11 @@ RUN mkdir $ANDROID_SDK_ROOT/licenses && \
     echo 84831b9409646a918e30573bab4c9c91346d8abd > $ANDROID_SDK_ROOT/licenses/android-sdk-preview-license
 
 # Update and install using sdkmanager
-RUN sdkmanager "platform-tools" "build-tools;28.0.3" "platforms;android-28"
+RUN sdkmanager "platform-tools" "build-tools;28.0.3" "platforms;android-28" > /dev/null
 
 # Install musl (for premake5) and missing tools for NDK
 RUN apt update -qq && \
-    apt install -qq --no-install-recommends -y musl file make && \
+    apt install -qq --no-install-recommends -y musl ccache file make > /dev/null && \
     rm -rf /var/lib/apt/lists/* 
 
 # Add Premake5
