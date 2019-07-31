@@ -5,9 +5,9 @@ ENV SDK_URL=https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 ENV NDK_URL=https://dl.google.com/android/repository/android-ndk-r19c-linux-x86_64.zip
 
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
-ENV ANDROID_NDK=/opt/android-ndk-r19c
+ENV ANDROID_NDK_HOME=/opt/android-ndk-r19c
 
-ENV PATH="${ANDROID_SDK_ROOT}/tools/bin:${ANDROID_NDK}:${PATH}"
+ENV PATH="${ANDROID_SDK_ROOT}/tools/bin:${ANDROID_NDK_HOME}:${PATH}"
 
 RUN apt-get -qq update && \
     apt-get install -qq --no-install-recommends -y openjdk-8-jdk-headless file && \
