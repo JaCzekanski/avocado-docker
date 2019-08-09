@@ -1,6 +1,6 @@
 TOPTARGETS = build push
 
-IMAGES = premake linux-clang6 android web
+IMAGES = premake linux-clang6 android emscripten
 
 $(TOPTARGETS): $(IMAGES)
 $(IMAGES):

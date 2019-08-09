@@ -1,5 +1,7 @@
 # Avocado Docker CI build enviroments
 
+[![Build Status](https://travis-ci.org/JaCzekanski/avocado-docker.svg?branch=master)](https://travis-ci.org/JaCzekanski/avocado-docker)
+
 ## Usage
 
 - Android
