@@ -6,7 +6,7 @@ ENV CLANG_VER=10
 # Download compilers 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -qq update && \
-    apt-get -qq install --no-install-recommends -y clang-$CLANG_VER musl ccache git wget ca-certificates make unzip libsdl2-dev && \
+    apt-get -qq install --no-install-recommends -y clang-$CLANG_VER musl ccache git wget ca-certificates make unzip file libsdl2-dev > /dev/null && \
     rm -rf /var/lib/apt/lists/* && \
     update-alternatives --install /usr/bin/cc cc /usr/bin/clang-$CLANG_VER 100 && \
     update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-$CLANG_VER 100 
