@@ -1,23 +1,25 @@
 FROM openjdk:8
 LABEL maintainer="ja.czekanski"
 
-ENV SDK_URL=https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-ENV NDK_URL=https://dl.google.com/android/repository/android-ndk-r19c-linux-x86_64.zip
+ENV SDK_URL=https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
+ENV NDK_URL=https://dl.google.com/android/repository/android-ndk-r23b-linux.zip
 
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
-ENV ANDROID_NDK_HOME=/opt/android-ndk-r19c
+ENV ANDROID_NDK_ROOT=/opt/android-ndk-r23b
 
-ENV PATH="${ANDROID_SDK_ROOT}/tools/bin:${ANDROID_NDK_HOME}:${PATH}"
+ENV PATH="${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_NDK_ROOT}:${PATH}"
 
 # Download Android SDK
 RUN wget -q -O sdk.zip $SDK_URL && \
-    unzip -qq sdk.zip -d /opt/android-sdk && \
+    mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
+    unzip -qq sdk.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && \
+    mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/tools && \
     rm sdk.zip
 
 # Download Android NDK
 RUN wget -q -O ndk.zip $NDK_URL && \
-    unzip -qq ndk.zip -d /opt/ && \
-    rm ndk.zip
+   unzip -qq ndk.zip -d /opt/ && \
+   rm ndk.zip
 
 # Add Android licenses
 RUN mkdir $ANDROID_SDK_ROOT/licenses && \
@@ -27,7 +29,7 @@ RUN mkdir $ANDROID_SDK_ROOT/licenses && \
     echo 84831b9409646a918e30573bab4c9c91346d8abd > $ANDROID_SDK_ROOT/licenses/android-sdk-preview-license
 
 # Update and install using sdkmanager
-RUN sdkmanager "platform-tools" "build-tools;28.0.3" "platforms;android-28" > /dev/null
+RUN sdkmanager "build-tools;29.0.3" "platforms;android-30" > /dev/null
 
 # Install musl (for premake5) and missing tools for NDK
 RUN apt update -qq && \
