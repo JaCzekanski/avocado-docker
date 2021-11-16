@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 LABEL maintainer="ja.czekanski"
 
-ARG VERSION=1.39.14
+ARG VERSION=2.0.33
 
 RUN ln -sf /bin/bash /bin/sh
 
